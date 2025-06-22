@@ -1,4 +1,4 @@
-def compare(value, operator, target):
+def compare(value: float | str, operator: str, target: float | str) -> bool:
     try:
         value, target = float(value), float(target)
     except ValueError:
@@ -17,7 +17,7 @@ def compare(value, operator, target):
     else:
         raise ValueError(f"Неизвестный оператор: {operator}")
 
-def aggregate_column(data, column, op):
+def aggregate_column(data: list[dict[str, str]], column: str, op: str) -> float:
     numbers = [float(row[column]) for row in data]
     if op == "avg":
         return sum(numbers) / len(numbers)

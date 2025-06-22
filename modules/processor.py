@@ -1,7 +1,7 @@
 import csv
 from .utils import compare, aggregate_column
 
-def process_csv(filepath, where, aggregate):
+def process_csv(filepath: str, where: str | None, aggregate: str | None) -> dict[str, list[str] | list[float]]:
     with open(filepath, newline='', encoding='utf-8') as f:
         reader = list(csv.DictReader(f))
     
@@ -19,7 +19,7 @@ def process_csv(filepath, where, aggregate):
 
     return {"headers": reader[0].keys() if reader else [], "data": [row.values() for row in reader]}
 
-def parse_filter(condition):
+def parse_filter(condition: str) -> tuple[str, str, str]:
     ops = [(">=", ">="), ("<=", "<="), (">", ">"), ("<", "<"), ("=", "==")]
     for symbol, op in ops:
         if symbol in condition:
